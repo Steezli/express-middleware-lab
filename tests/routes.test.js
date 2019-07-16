@@ -29,7 +29,16 @@ describe('routes', () => {
           quote: ''
         }]);
       });
-      
-
   });
+  it('can GET a profile based on index', () => {
+    return request(app)
+      .get('/api/quotes/1')
+      .then(res => {
+        expect(res.body).toEqual({
+          name: 'eli',
+          favoriteCharacter: 'bender',
+          quote: ''
+        })
+      })
+  })
 });
