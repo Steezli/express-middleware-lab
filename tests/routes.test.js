@@ -32,7 +32,7 @@ describe('routes', () => {
   });
   it('can GET a profile based on index', () => {
     return request(app)
-      .get('/api/quotes/1')
+      .get('/api/quotes/0')
       .then(res => {
         expect(res.body).toEqual({
           name: 'eli',
@@ -48,8 +48,19 @@ describe('routes', () => {
       quote: ''
     };
     return request(app)
-      .patch('/api/quotes/1')
+      .patch('/api/quotes/0')
       .send(newProfile)
+      .then(res => {
+        expect(res.body).toEqual({
+          name: 'Erin',
+          favoriteCharacter: 'bender',
+          quote: ''
+        });
+      });
+  });
+  it('can delete a profile using DELETE', () => {
+    return request(app)
+      .delete('/api/quotes/')
       .then(res => {
         expect(res.body).toEqual({
           name: 'erin',
@@ -58,15 +69,4 @@ describe('routes', () => {
         });
       });
   });
-  it('can delete a profile using DELETE', => {
-    return request(app)
-      .delete('/api/quotes/1')
-      .then(res => {
-        expect(res.body).toEqual({
-          name: 'erin',
-          favoriteCharacter: 'bender',
-          quote: ''
-        })
-      })
-  })
 });
