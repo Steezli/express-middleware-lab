@@ -58,4 +58,15 @@ describe('routes', () => {
         });
       });
   });
+  it('can delete a profile using DELETE', => {
+    return request(app)
+      .delete('/api/quotes/1')
+      .then(res => {
+        expect(res.body).toEqual({
+          name: 'erin',
+          favoriteCharacter: 'bender',
+          quote: ''
+        })
+      })
+  })
 });
