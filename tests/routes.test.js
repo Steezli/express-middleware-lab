@@ -38,7 +38,24 @@ describe('routes', () => {
           name: 'eli',
           favoriteCharacter: 'bender',
           quote: ''
-        })
-      })
-  })
+        });
+      });
+  });
+  it('can update with PATCH', () => {
+    const newProfile = {
+      name: 'Erin',
+      favoriteCharacter: 'bender',
+      quote: ''
+    };
+    return request(app)
+      .patch('/api/quotes/1')
+      .send(newProfile)
+      .then(res => {
+        expect(res.body).toEqual({
+          name: 'erin',
+          favoriteCharacter: 'bender',
+          quote: ''
+        });
+      });
+  });
 });
